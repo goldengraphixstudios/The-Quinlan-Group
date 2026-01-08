@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Quinlan Group - Premier Rhode Island Real Estate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray: #888888;
+            --gray-light: #CCCCCC;
+            --gray-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideDown 1s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            filter: brightness(0) invert(1);
+        }
+        
+        nav {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            opacity: 0.7;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            padding: 8rem 2rem 4rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-light);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--white);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--white);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 8rem 5%;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+        
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Featured Listings */
+        .listings {
+            background: #F8F8F8;
+        }
+        
+        .listings-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+        }
+        
+        .listing-card {
+            background: var(--white);
+            overflow: hidden;
+            transition: all 0.5s ease;
+            border: 1px solid #E0E0E0;
+        }
+        
+        .listing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .listing-image {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            background: var(--gray-dark);
+        }
+        
+        .listing-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .listing-card:hover .listing-image img {
+            transform: scale(1.1);
+        }
+        
+        .listing-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--black);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .listing-content {
+            padding: 2.5rem;
+        }
+        
+        .listing-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .listing-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .listing-location {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .listing-details {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #E0E0E0;
+        }
+        
+        .detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .detail-icon {
+            font-size: 1.2rem;
+        }
+        
+        .detail-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .listing-description {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .listing-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-small {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+        }
+        
+        /* About Section */
+        .about {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+            color: var(--gray-light);
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature {
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--white);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .feature p {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: #F8F8F8;
+        }
+        
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 6rem;
+        }
+        
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+        
+        .contact-info p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border: 1px solid #E0E0E0;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+        
+        .contact-text h4 {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-text p,
+        .contact-text a {
+            color: var(--gray);
+            text-decoration: none;
+        }
+        
+        .contact-text a:hover {
+            color: var(--black);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border: 1px solid #E0E0E0;
+        }
+        
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid #E0E0E0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1.4rem;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .submit-btn:hover {
+            background: var(--gray-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo img {
+            height: 80px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-text {
+            color: var(--gray-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        
+        .footer-divider {
+            width: 200px;
+            height: 1px;
+            background: var(--gray);
+            margin: 2rem auto;
+        }
+        
+        .footer-bottom {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--white);
+            padding: 3rem;
+            border: 3px solid var(--black);
+            text-align: center;
+            z-index: 10000;
+            transition: transform 0.4s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .success-message.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .success-message h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn span {
+            width: 30px;
+            height: 3px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            
+            .listings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--black);
+                flex-direction: column;
+                padding: 8rem 2rem;
+                transition: right 0.4s ease;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='serif' font-size='40' font-weight='bold' letter-spacing='3'%3ETHE QUINLAN GROUP%3C/text%3E%3C/svg%3E" alt="The Quinlan Group">
+            </div>
+            <nav id="nav">
+                <a href="#home">Home</a>
+                <a href="#listings">Listings</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="mobile-menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>The Quinlan Group</h1>
+            <p>Top RI Real Estate team helping 200+ families since 2017. Integrity, expertise & client-first service. With us, you're family.</p>
+            <a href="#listings" class="btn">View Listings</a>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Families Helped</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">States Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="listings" id="listings">
+        <div class="section-header">
+            <div class="section-label">Featured Properties</div>
+            <h2>Luxury Listings</h2>
+            <p>Discover exceptional homes across Rhode Island, Massachusetts, and Connecticut</p>
+        </div>
+        
+        <div class="listings-grid">
+            <!-- Listing 1 -->
+            <div class="listing-card">
+                <div class="listing-image">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center; padding: 2rem;">
+                        Waterfront Colonial Estate<br>Newport, RI
+                    </div>
+                    <div class="listing-badge">Just Listed</div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">$1,895,000</div>
+                    <div class="listing-title">Stunning Waterfront Colonial</div>
+                    <div class="listing-location">📍 Newport, Rhode Island</div>
+                    
+                    <div class="listing-details">
+                        <div class="detail">
+                            <span class="detail-icon">🛏️</span>
+                            <span class="detail-text">5 Beds</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">🚿</span>
+                            <span class="detail-text">4.5 Baths</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">📐</span>
+                            <span class="detail-text">4,200 sq ft</span>
+                        </div>
+                    </div>
+                    
+                    <div class="listing-description">
+                        Breathtaking waterfront colonial with panoramic ocean views. Features gourmet kitchen, master suite with private balcony, private dock, and meticulously landscaped grounds.
+                    </div>
+                    
+                    <div class="listing-buttons">
+                        <a href="#contact" class="btn btn-small">Schedule Tour</a>
+                        <a href="#contact" class="btn btn-small btn-outline">Request Info</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Listing 2 -->
+            <div class="listing-card">
+                <div class="listing-image">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #2d2d2d 0%, #5a5a5a 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center; padding: 2rem;">
+                        Modern Luxury Home<br>Providence, RI
+                    </div>
+                    <div class="listing-badge">New</div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">$1,250,000</div>
+                    <div class="listing-title">Contemporary Masterpiece</div>
+                    <div class="listing-location">📍 Providence, Rhode Island</div>
+                    
+                    <div class="listing-details">
+                        <div class="detail">
+                            <span class="detail-icon">🛏️</span>
+                            <span class="detail-text">4 Beds</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">🚿</span>
+                            <span class="detail-text">3.5 Baths</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">📐</span>
+                            <span class="detail-text">3,800 sq ft</span>
+                        </div>
+                    </div>
+                    
+                    <div class="listing-description">
+                        Stunning modern architecture with floor-to-ceiling windows, chef's kitchen with premium appliances, spa-like bathrooms, and a private backyard oasis perfect for entertaining.
+                    </div>
+                    
+                    <div class="listing-buttons">
+                        <a href="#contact" class="btn btn-small">Schedule Tour</a>
+                        <a href="#contact" class="btn btn-small btn-outline">Request Info</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Listing 3 -->
+            <div class="listing-card">
+                <div class="listing-image">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1f1f1f 0%, #4f4f4f 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center; padding: 2rem;">
+                        Historic Estate<br>Boston, MA
+                    </div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">$2,450,000</div>
+                    <div class="listing-title">Elegant Historic Estate</div>
+                    <div class="listing-location">📍 Beacon Hill, Boston, MA</div>
+                    
+                    <div class="listing-details">
+                        <div class="detail">
+                            <span class="detail-icon">🛏️</span>
+                            <span class="detail-text">6 Beds</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">🚿</span>
+                            <span class="detail-text">5 Baths</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">📐</span>
+                            <span class="detail-text">5,500 sq ft</span>
+                        </div>
+                    </div>
+                    
+                    <div class="listing-description">
+                        Magnificent 1890s Victorian estate meticulously restored with modern amenities. Original hardwood floors, ornate moldings, library with fireplace, and formal gardens.
+                    </div>
+                    
+                    <div class="listing-buttons">
+                        <a href="#contact" class="btn btn-small">Schedule Tour</a>
+                        <a href="#contact" class="btn btn-small btn-outline">Request Info</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Listing 4 -->
+            <div class="listing-card">
+                <div class="listing-image">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #252525 0%, #555555 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center; padding: 2rem;">
+                        Lakefront Retreat<br>Greenwich, CT
+                    </div>
+                    <div class="listing-badge">Hot Property</div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">$1,675,000</div>
+                    <div class="listing-title">Lakefront Luxury Retreat</div>
+                    <div class="listing-location">📍 Greenwich, Connecticut</div>
+                    
+                    <div class="listing-details">
+                        <div class="detail">
+                            <span class="detail-icon">🛏️</span>
+                            <span class="detail-text">5 Beds</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">🚿</span>
+                            <span class="detail-text">4 Baths</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">📐</span>
+                            <span class="detail-text">4,600 sq ft</span>
+                        </div>
+                    </div>
+                    
+                    <div class="listing-description">
+                        Serene lakefront property with private beach access. Open-concept living, gourmet kitchen, home theater, wine cellar, and expansive outdoor entertaining spaces.
+                    </div>
+                    
+                    <div class="listing-buttons">
+                        <a href="#contact" class="btn btn-small">Schedule Tour</a>
+                        <a href="#contact" class="btn btn-small btn-outline">Request Info</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Listing 5 -->
+            <div class="listing-card">
+                <div class="listing-image">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1c1c1c 0%, #4c4c4c 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center; padding: 2rem;">
+                        Golf Course Estate<br>Barrington, RI
+                    </div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">$1,425,000</div>
+                    <div class="listing-title">Golf Course Estate Home</div>
+                    <div class="listing-location">📍 Barrington, Rhode Island</div>
+                    
+                    <div class="listing-details">
+                        <div class="detail">
+                            <span class="detail-icon">🛏️</span>
+                            <span class="detail-text">4 Beds</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">🚿</span>
+                            <span class="detail-text">4 Baths</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">📐</span>
+                            <span class="detail-text">4,100 sq ft</span>
+                        </div>
+                    </div>
+                    
+                    <div class="listing-description">
+                        Prestigious golf course community home with stunning fairway views. Custom built with premium finishes, covered patio, three-car garage, and professionally designed landscaping.
+                    </div>
+                    
+                    <div class="listing-buttons">
+                        <a href="#contact" class="btn btn-small">Schedule Tour</a>
+                        <a href="#contact" class="btn btn-small btn-outline">Request Info</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Listing 6 -->
+            <div class="listing-card">
+                <div class="listing-image">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #222222 0%, #525252 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; text-align: center; padding: 2rem;">
+                        Coastal Luxury Villa<br>Watch Hill, RI
+                    </div>
+                    <div class="listing-badge">Featured</div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">$3,250,000</div>
+                    <div class="listing-title">Spectacular Coastal Villa</div>
+                    <div class="listing-location">📍 Watch Hill, Rhode Island</div>
+                    
+                    <div class="listing-details">
+                        <div class="detail">
+                            <span class="detail-icon">🛏️</span>
+                            <span class="detail-text">7 Beds</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">🚿</span>
+                            <span class="detail-text">6.5 Baths</span>
+                        </div>
+                        <div class="detail">
+                            <span class="detail-icon">📐</span>
+                            <span class="detail-text">6,800 sq ft</span>
+                        </div>
+                    </div>
+                    
+                    <div class="listing-description">
+                        Exclusive coastal estate with unobstructed Atlantic views. Features infinity pool, guest house, private beach access, wine cellar, home gym, and state-of-the-art smart home technology.
+                    </div>
+                    
+                    <div class="listing-buttons">
+                        <a href="#contact" class="btn btn-small">Schedule Tour</a>
+                        <a href="#contact" class="btn btn-small btn-outline">Request Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="about" id="about">
+        <div class="section-header">
+            <div class="section-label">About Us</div>
+            <h2>The Quinlan Difference</h2>
+            <p>Eight years of excellence serving families across Rhode Island, Massachusetts, and Connecticut</p>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Authentic. Approachable. Family-Driven.</h3>
+                <p>
+                    The Quinlan Group brings the warmth of personal service into the precision of professional real estate expertise. For eight years, we've been helping families navigate one of life's biggest decisions with trust, clarity, and unwavering loyalty.
+                </p>
+                <p>
+                    Operating under Keller Williams Leading Edge Realty, we've helped over 200 families find their dream homes across Rhode Island, Massachusetts, and Connecticut. What sets us apart is simple: we treat every client like family.
+                </p>
+                <p>
+                    Featured on Providence Journal, WPRI, and WNRI, we're proud to be recognized as a top-performing team in the region. But our greatest achievement? The relationships we build and the trust our clients place in us.
+                </p>
+            </div>
+            
+            <div class="about-features">
+                <div class="feature">
+                    <div class="feature-icon">🏆</div>
+                    <h4>8 Years</h4>
+                    <p>Of dedicated service</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h4>200+ Families</h4>
+                    <p>Helped since 2017</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏠</div>
+                    <h4>3 States</h4>
+                    <p>RI, MA, CT Coverage</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📰</div>
+                    <h4>Featured</h4>
+                    <p>Projo, WPRI, WNRI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <div class="section-label">Get In Touch</div>
+            <h2>Let's Find Your Dream Home</h2>
+            <p>Ready to start your journey? Contact us today for a personalized consultation</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Connect With Us</h3>
+                <p>
+                    Whether you're buying your first home, selling your current property, or looking for investment opportunities, The Quinlan Group is here to guide you every step of the way. With us, you're family.
+                </p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <a href="mailto:info@quinlangroup.com">info@quinlangroup.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <a href="tel:+14015551234">(401) 555-1234</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Service Areas</h4>
+                            <p>Rhode Island, Massachusetts, Connecticut</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div class="contact-text">
+                            <h4>Brokerage</h4>
+                            <p>Keller Williams Leading Edge Realty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm" action="https://formspree.io/f/mkogdyjp" method="POST">
+                    <input type="hidden" name="_subject" value="New Inquiry - The Quinlan Group">
+                    <input type="hidden" name="client" value="The Quinlan Group">
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest">I'm Interested In *</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select an option</option>
+                            <option value="buying">Buying a Home</option>
+                            <option value="selling">Selling My Home</option>
+                            <option value="both">Buying & Selling</option>
+                            <option value="investment">Investment Property</option>
+                            <option value="consultation">Free Consultation</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Preferred Location</label>
+                        <select id="location" name="location">
+                            <option value="">Select a state</option>
+                            <option value="rhode-island">Rhode Island</option>
+                            <option value="massachusetts">Massachusetts</option>
+                            <option value="connecticut">Connecticut</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your real estate goals..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='serif' font-size='40' font-weight='bold' letter-spacing='3'%3ETHE QUINLAN GROUP%3C/text%3E%3C/svg%3E" alt="The Quinlan Group">
+        </div>
+        <div class="footer-text">
+            Top RI Real Estate team helping 200+ families since 2017.<br>
+            Integrity, expertise & client-first service. With us, you're family.
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The Quinlan Group. All Rights Reserved.</p>
+            <p>Keller Williams Leading Edge Realty</p>
+        </div>
+    </footer>
+    
+    <div class="success-message" id="successMessage">
+        <h3>Message Sent!</h3>
+        <p>Thank you for reaching out. We'll contact you within 24 hours.</p>
+    </div>
+    
+    <script>
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('nav');
+        
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    nav.classList.remove('active');
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        contactForm.addEventListener('submit', function(e) {
+            setTimeout(() => {
+                successMessage.classList.add('show');
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 4000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
