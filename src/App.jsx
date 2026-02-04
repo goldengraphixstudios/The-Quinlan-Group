@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
+import { HashRouter, NavLink, Route, Routes } from 'react-router-dom'
 import logo from './assets/logo.png'
 import Home from './pages/Home'
 import Listings from './pages/Listings'
@@ -50,7 +50,7 @@ function Cursor() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="page">
         <Cursor />
         <header className="nav">
@@ -96,7 +96,7 @@ function App() {
           <p>Modern, honest, and relationship-first real estate guidance.</p>
         </footer>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
