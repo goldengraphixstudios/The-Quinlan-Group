@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Git internals
+.git/
+
+# Generated assets (referenced but not source)
+src/assets/react.svg

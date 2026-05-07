@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" fill="none">
+  <!-- Stylized "real" wordmark matching Real Broker LLC identity -->
+  <!-- r (mirrored) -->
+  <text x="4" y="32" font-family="Arial Black, sans-serif" font-size="34" font-weight="900" fill="white" transform="scale(-1,1) translate(-38,0)">r</text>
+  <!-- e -->
+  <text x="38" y="32" font-family="Arial Black, sans-serif" font-size="34" font-weight="900" fill="white">e</text>
+  <!-- a -->
+  <text x="65" y="32" font-family="Arial Black, sans-serif" font-size="34" font-weight="900" fill="white">a</text>
+  <!-- l (mirrored) -->
+  <text x="116" y="32" font-family="Arial Black, sans-serif" font-size="34" font-weight="900" fill="white" transform="scale(-1,1) translate(-210,0)">l</text>
+</svg>
