@@ -12,41 +12,18 @@ import FloridaToast from './components/FloridaToast'
 
 function Cursor() {
   const dotRef = useRef(null)
-  const ringRef = useRef(null)
-  const mouse = useRef({ x: 0, y: 0 })
-  const ring = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
-    let frame = 0
     const move = (event) => {
-      mouse.current.x = event.clientX
-      mouse.current.y = event.clientY
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`
       }
     }
-    const animate = () => {
-      ring.current.x += (mouse.current.x - ring.current.x) * 0.12
-      ring.current.y += (mouse.current.y - ring.current.y) * 0.12
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ring.current.x}px, ${ring.current.y}px, 0)`
-      }
-      frame = requestAnimationFrame(animate)
-    }
     window.addEventListener('mousemove', move)
-    frame = requestAnimationFrame(animate)
-    return () => {
-      window.removeEventListener('mousemove', move)
-      cancelAnimationFrame(frame)
-    }
+    return () => window.removeEventListener('mousemove', move)
   }, [])
 
-  return (
-    <>
-      <div ref={ringRef} className="cursor-ring" />
-      <div ref={dotRef} className="cursor-dot" />
-    </>
-  )
+  return <div ref={dotRef} className="cursor-dot" />
 }
 
 function MobileMenu({ open, setOpen }) {

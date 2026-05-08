@@ -1719,24 +1719,12 @@ button, .btn, input, select, textarea { cursor: none; }
 /* ─────────────────────────────────────────
    CURSOR
 ───────────────────────────────────────── */
-.cursor-ring,
 .cursor-dot {
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: screen;
-}
-
-.cursor-ring {
-  width: 40px; height: 40px;
-  border: 1px solid rgba(246,246,246,0.65);
-  border-radius: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  transition: border-color 0.3s ease;
-}
-
-.cursor-dot {
   width: 8px; height: 8px;
   background: var(--white);
   border-radius: 50%;
@@ -1823,7 +1811,7 @@ button, .btn, input, select, textarea { cursor: none; }
 
 @media (max-width: 720px) {
   body { cursor: auto; }
-  .cursor-ring, .cursor-dot { display: none; }
+  .cursor-dot { display: none; }
   a, button, .btn, input, select, textarea { cursor: auto; }
 
   .nav { flex-direction: row; gap: 1rem; }
