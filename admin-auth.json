@@ -1,4 +1,4 @@
 {
   "configured": false,
-  "note": "Created by the admin setup screen. Holds the GitHub token encrypted with the editor password - never the token itself, and never the password."
+  "note": "Seeded by scripts/set-admin.mjs. Holds the GitHub token encrypted under the admin password - never the token itself, and never the password."
 }
