@@ -1,34 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import floridaImg from '../assets/florida-license.jpg'
-import westfordImg from '../assets/social/post-westford-closed.jpg'
-import swanImg from '../assets/social/post-swan-closed.jpg'
-
-const ITEMS = [
-  {
-    img: floridaImg,
-    eyebrow: 'Expanding Coverage',
-    headline: 'Now Licensed in Florida',
-    sub: 'Serving buyers, sellers & investors in FL alongside RI, MA & CT.',
-    cta: 'Connect With Us →',
-    href: '#/contact',
-  },
-  {
-    img: westfordImg,
-    eyebrow: 'Just Closed',
-    headline: '64 Westford Rd, Eastford CT',
-    sub: 'Rural CT property closed with cross-state precision.',
-    cta: 'View All Closings →',
-    href: '#/listings',
-  },
-  {
-    img: swanImg,
-    eyebrow: 'Just Closed',
-    headline: '58 Swan St, East Providence RI',
-    sub: 'Renovated Cape Cod sold with targeted digital strategy.',
-    cta: 'View All Closings →',
-    href: '#/listings',
-  },
-]
+import { news as ITEMS } from '../content'
 
 export default function FloridaToast() {
   const [visible, setVisible] = useState(false)
@@ -38,6 +9,7 @@ export default function FloridaToast() {
   const curIdx = useRef(0)
 
   useEffect(() => {
+    if (!ITEMS.length) return
     if (sessionStorage.getItem('tqg_fl_dismissed')) return
     const timer = setTimeout(() => setVisible(true), 4000)
     return () => clearTimeout(timer)
@@ -66,7 +38,7 @@ export default function FloridaToast() {
     setTimeout(() => setVisible(false), 400)
   }
 
-  if (!visible) return null
+  if (!visible || !ITEMS.length) return null
 
   const item = ITEMS[idx]
 

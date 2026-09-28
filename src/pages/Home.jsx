@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { articles as eduPosts, closings as dealPosts } from '../content'
 import heroBg from '../assets/hero-bg.jpg'
 import teamHero from '../assets/team-hero.jpg'
 import brandJourney from '../assets/brand-journey.jpg'
@@ -9,259 +10,6 @@ import rebeccaPhoto from '../assets/rebecca-manchester.png'
 import projoLogo from '../assets/logos/projo.svg'
 import wpriLogo from '../assets/logos/wpri.svg'
 import wnriLogo from '../assets/logos/wnri.png'
-
-import postHamptonClosed from '../assets/social/post-hampton-closed.jpg'
-import postBrewsterSold from '../assets/social/post-brewster-sold.jpg'
-import postHarrisonClosed from '../assets/social/post-harrison-closed.jpg'
-import postPutnamClosed from '../assets/social/post-putnam-closed.jpg'
-import postSwanClosed from '../assets/social/post-swan-closed.jpg'
-import postWoodwineClosed from '../assets/social/post-woodbine-closed.jpg'
-import postWestfordClosed from '../assets/social/post-westford-closed.jpg'
-
-import postWhyDontSell from '../assets/social/post-why-homes-dont-sell.jpg'
-import postMortgageRent from '../assets/social/post-mortgage-vs-rent.jpg'
-import postHiddenCosts from '../assets/social/post-hidden-costs.jpg'
-import postFirstImpressions from '../assets/social/post-first-impressions.jpg'
-import postDontRush from '../assets/social/post-dont-rush.jpg'
-import postRealtorBeats from '../assets/social/post-realtor-beats-solo.jpg'
-import postTimeToSell from '../assets/social/post-time-to-sell.jpg'
-
-const dealPosts = [
-  { id: 'd1', img: postHamptonClosed, caption: 'Just Closed · 21 Hampton Ave, Warwick RI' },
-  { id: 'd2', img: postBrewsterSold, caption: 'Just Sold · 67 Brewster Dr, Warwick RI' },
-  { id: 'd3', img: postHarrisonClosed, caption: 'Closed Deal · 193 Harrison St, Pawtucket RI' },
-  { id: 'd4', img: postPutnamClosed, caption: 'Closed Deal · 290 Providence Pike, Putnam CT' },
-  { id: 'd5', img: postSwanClosed, caption: 'Just Closed · 58 Swan St, East Providence RI' },
-  { id: 'd6', img: postWoodwineClosed, caption: 'Just Closed · 0 Woodbine St, Johnston RI' },
-  { id: 'd7', img: postWestfordClosed, caption: 'Just Closed · 64 Westford Rd, Eastford CT' },
-]
-
-const eduPosts = [
-  {
-    id: 'e1',
-    img: postWhyDontSell,
-    caption: 'The Real Reason Your Home Isn\'t Selling',
-    article: {
-      title: 'The Real Reason Your Home Isn\'t Selling',
-      intro: 'You\'ve listed your home. The photos look great. But weeks have passed and the offers just aren\'t coming. Here\'s the uncomfortable truth — most homes that sit on the market have at least one of these five problems.',
-      sections: [
-        {
-          heading: '1. Pricing It Like It\'s 2022',
-          body: 'The market has shifted. Buyers have more inventory to choose from, and they know it. If your home is priced even 5% above comparable sales, you\'re likely being skipped entirely. Precision pricing isn\'t guessing — it\'s data-driven strategy, and it\'s the single biggest lever in your sale.',
-        },
-        {
-          heading: '2. Weak Listing Photos',
-          body: 'Over 90% of buyers begin their search online. Dim, wide-angle, or cluttered photos send buyers to the next listing in seconds. Professional photography — proper lighting, staged rooms, and a compelling narrative — is no longer optional.',
-        },
-        {
-          heading: '3. Minimal Marketing Reach',
-          body: 'MLS alone isn\'t enough. Top-performing listings use targeted digital ad campaigns, Instagram/Facebook placement, email outreach to buyer databases, and media contacts. If your home isn\'t showing up in front of the right buyers, price doesn\'t matter.',
-        },
-        {
-          heading: '4. Poor First Impressions',
-          body: 'Buyers form an emotional judgment within 8 seconds of arriving. Overgrown landscaping, scuffed doors, and dated entryways kill deals before anyone walks through. Staging direction and pre-list preparation are key — not optional extras.',
-        },
-        {
-          heading: '5. The Wrong Agent',
-          body: 'Not all agents offer the same service level. The difference between a passive listing agent and a strategic marketing partner can mean tens of thousands of dollars — and months of your time. Ask the right questions before you sign.',
-        },
-      ],
-      cta: 'Book a Seller Strategy Call',
-    },
-  },
-  {
-    id: 'e2',
-    img: postMortgageRent,
-    caption: 'Monthly Mortgage vs. Monthly Rent',
-    article: {
-      title: 'Monthly Mortgage vs. Monthly Rent: What Nobody Tells You',
-      intro: 'The rent-vs-buy debate gets oversimplified constantly. Here\'s a clear-eyed breakdown of what you\'re actually comparing — and why the math often surprises people.',
-      sections: [
-        {
-          heading: 'What You\'re Actually Paying in Rent',
-          body: 'Every rent check disappears. You\'re paying your landlord\'s mortgage, property taxes, and profit margin while building zero equity of your own. In most Rhode Island markets, monthly rent on a 3-bedroom home now exceeds $2,200 — and it goes up every year.',
-        },
-        {
-          heading: 'The Real Cost of a Mortgage',
-          body: 'A $350,000 home at today\'s rates puts your principal + interest at roughly $2,100/month. Add taxes and insurance and you\'re close to $2,500. But — you\'re building equity from day one. After 5 years, tens of thousands of dollars in equity belong to you.',
-        },
-        {
-          heading: 'The Hidden Advantage: Appreciation',
-          body: 'RI home values have averaged 4–6% annual appreciation over the past decade. A $350K home could be worth $425K+ in five years. That\'s a gain your rent check will never produce.',
-        },
-        {
-          heading: 'When Renting Still Makes Sense',
-          body: 'If you\'re moving in under 18 months, still building your down payment, or in a highly uncertain employment situation — renting short-term is rational. Buying is a long game, and we always advise clients honestly about timing.',
-        },
-        {
-          heading: 'The Bottom Line',
-          body: 'There\'s no universal right answer, but in most cases, buyers who delay for 1–2 years lose more in appreciation and rising prices than they save. Talk to a lender and a buyer\'s agent — not just a landlord.',
-        },
-      ],
-      cta: 'Book a Buyer Consultation',
-    },
-  },
-  {
-    id: 'e3',
-    img: postHiddenCosts,
-    caption: 'Hidden Costs in Home Ownership',
-    article: {
-      title: 'Hidden Costs in Home Ownership You Need to Budget For',
-      intro: 'Your mortgage payment is just the beginning. Here\'s what most first-time buyers aren\'t told — and what catches them off guard in year one.',
-      sections: [
-        {
-          heading: 'Property Taxes',
-          body: 'Rhode Island property taxes average around 1.3–1.6% of assessed value annually. On a $400K home, that\'s $5,200–$6,400 per year — often escrow-wrapped into your payment, but always real money.',
-        },
-        {
-          heading: 'Homeowner\'s Insurance',
-          body: 'Expect $1,200–$2,000/year for a standard RI policy. Flood zones, older construction, and coastal properties can push this significantly higher. Always request quotes before closing.',
-        },
-        {
-          heading: 'Maintenance & Repairs',
-          body: 'The rule of thumb: budget 1% of home value per year for maintenance. On a $400K home, that\'s $4,000. New roofs, HVAC service, appliance replacements — they come for every homeowner eventually.',
-        },
-        {
-          heading: 'HOA Fees',
-          body: 'Many condos and planned communities charge $200–$600/month. This gets overlooked during the excitement of offer acceptance, then shows up as a real line item. Always ask upfront.',
-        },
-        {
-          heading: 'Closing Costs',
-          body: 'Buyers typically pay 2–5% of the loan in closing costs. On a $350K purchase, that\'s $7,000–$17,500 due at closing — in addition to your down payment. Budget for this early in the process.',
-        },
-      ],
-      cta: 'Get a Free Buyer\'s Guide',
-    },
-  },
-  {
-    id: 'e4',
-    img: postFirstImpressions,
-    caption: 'The Psychology of First Impressions',
-    article: {
-      title: 'The Psychology of First Impressions in Real Estate',
-      intro: 'Buyers make their emotional decision in the first 8 seconds. Everything after that is justification. Understanding buyer psychology is the most underrated advantage a seller can have.',
-      sections: [
-        {
-          heading: 'Curb Appeal Isn\'t Optional',
-          body: 'The driveway, front door, landscaping, and entry path all contribute to the buyer\'s gut feeling before they ever step inside. A fresh coat of paint on the door, trimmed hedges, and a clean walkway can add perceived value of $10,000+ in a buyer\'s mind.',
-        },
-        {
-          heading: 'Scent Is the Most Powerful Sense',
-          body: 'Before they see the kitchen, they smell it. Pet odors, mustiness, and cooking smells are immediate deal-breakers. A neutral, freshly cleaned home with subtle natural scents signals that the property has been cared for.',
-        },
-        {
-          heading: 'Declutter to Create Mental Space',
-          body: 'Buyers can\'t visualize themselves in a space filled with your things. Professional staging — or even a focused declutter session — allows buyers to project their own life into the home. Empty space is a selling tool.',
-        },
-        {
-          heading: 'Light Is Everything',
-          body: 'Dark rooms feel smaller and less valuable. Open blinds, replace dim bulbs, clean windows, and let natural light do the work. In listing photos and showings, brightness is directly correlated with perceived price.',
-        },
-        {
-          heading: 'The Agent\'s Role in Managing Impressions',
-          body: 'A skilled listing agent coordinates every touchpoint — from the listing description framing to the order of the showing tour. It\'s not accidental. Every part of the buyer\'s experience is intentionally designed to create emotional connection.',
-        },
-      ],
-      cta: 'Request a Free Staging Consultation',
-    },
-  },
-  {
-    id: 'e5',
-    img: postDontRush,
-    caption: 'Don\'t Rush Your Home Decisions',
-    article: {
-      title: 'Why You Shouldn\'t Rush Your Real Estate Decisions',
-      intro: 'We live in a culture of urgency. And real estate markets can feel like pressure cookers. But making rushed decisions on a $400,000 asset is how people end up in the wrong home — or the wrong deal.',
-      sections: [
-        {
-          heading: 'FOMO Is the Enemy of Good Decisions',
-          body: 'Fear of missing out causes buyers to overbid, skip inspections, and ignore red flags. Yes, good properties move fast — but the right advisor helps you act decisively on the right home, not impulsively on the wrong one.',
-        },
-        {
-          heading: 'The Inspection Is Non-Negotiable',
-          body: 'Waiving inspections to win in a competitive market is a calculated risk — and in most cases, not one worth taking. A $500 inspection can uncover $30,000 in deferred maintenance. We guide clients to find creative ways to compete without skipping due diligence.',
-        },
-        {
-          heading: 'Slow Down on Sellers Too',
-          body: 'Sellers who price out of fear or frustration often underprice. Sellers who rush to accept the first offer without reviewing terms often leave money on the table. Strategy beats speed.',
-        },
-        {
-          heading: 'The Right Timeline Is Yours',
-          body: 'Every client\'s situation is different. A first-time buyer needs different pacing than an investor or a relocating family. We build your process around your life — not market pressure.',
-        },
-        {
-          heading: 'What Good Guidance Looks Like',
-          body: 'The right advisor gives you clarity, not urgency. They explain the market, help you understand risk vs. opportunity, and let you make an informed decision with confidence. That\'s the standard we hold ourselves to.',
-        },
-      ],
-      cta: 'Schedule a No-Pressure Consultation',
-    },
-  },
-  {
-    id: 'e6',
-    img: postRealtorBeats,
-    caption: 'Why Working with a Realtor Beats Going Solo',
-    article: {
-      title: 'Why Working With a Realtor Beats Going It Alone',
-      intro: 'In the age of Zillow and online listings, it\'s tempting to think you can buy or sell without representation. Here\'s what that decision actually costs you.',
-      sections: [
-        {
-          heading: 'Access to the Full Market',
-          body: 'Experienced agents have access to off-market opportunities, coming-soon listings, and agent networks that never appear on public platforms. In competitive markets, these are the deals that actually close at favorable terms.',
-        },
-        {
-          heading: 'Negotiation Is a Skill',
-          body: 'The average person negotiates a home purchase once or twice in a lifetime. An active agent negotiates dozens of transactions each year. That experience translates directly to better terms, better prices, and fewer surprises.',
-        },
-        {
-          heading: 'Transaction Management',
-          body: 'A real estate contract involves dozens of deadlines, contingencies, and coordination with attorneys, lenders, inspectors, and title companies. Missing one deadline can kill a deal — or cost you your deposit. An agent manages this so you don\'t have to.',
-        },
-        {
-          heading: 'Sellers Who Go FSBO Often Net Less',
-          body: 'Studies consistently show that For Sale By Owner listings sell for 5–15% less than agent-represented properties. The commission you\'re trying to save is often less than the value an agent\'s marketing and negotiation adds.',
-        },
-        {
-          heading: 'Protection and Advocacy',
-          body: 'Your agent\'s job is to represent your interests — not the other party\'s. From spotting red flags in disclosures to pushing back on inflated repair credits, having someone in your corner is the difference between a good deal and a great one.',
-        },
-      ],
-      cta: 'Connect With Our Team',
-    },
-  },
-  {
-    id: 'e7',
-    img: postTimeToSell,
-    caption: 'How to Know When It\'s Time to Sell',
-    article: {
-      title: 'How to Know When It\'s Time to Sell Your Home',
-      intro: 'Selling is one of the biggest financial decisions you\'ll make. How do you know when the timing is right? Here are the signals that experienced agents watch for — and what they mean for your situation.',
-      sections: [
-        {
-          heading: 'You\'ve Outgrown the Space',
-          body: 'Growing families, aging parents moving in, or new remote work needs can all signal that your current home no longer fits your life. If you find yourself routinely frustrated by the lack of space, it\'s time to have the conversation.',
-        },
-        {
-          heading: 'Your Equity Has Grown Substantially',
-          body: 'If you purchased before 2020 or made consistent improvements, your equity position may be strong enough to fund a meaningful move-up purchase. A market analysis will tell you exactly where you stand.',
-        },
-        {
-          heading: 'The Market Favors Sellers',
-          body: 'Low inventory markets — like much of RI and southern New England in recent years — give sellers significant leverage. When demand outpaces supply, motivated buyers compete, and sellers win on price and terms.',
-        },
-        {
-          heading: 'Life Has Changed',
-          body: 'Divorce, job relocation, retirement, or the loss of a family member — life events create real estate decisions, and timing them well matters. There\'s no single right answer, but thoughtful planning protects your financial outcome.',
-        },
-        {
-          heading: 'You\'re Ready for the Process',
-          body: 'Selling requires preparation, patience, and emotional readiness to let go. If you\'re there mentally and your equity supports the move, the next step is a no-obligation market analysis with a trusted advisor.',
-        },
-      ],
-      cta: 'Request a Free Market Analysis',
-    },
-  },
-]
 
 /* ── ICONS ── */
 const Ico = {
@@ -380,8 +128,8 @@ function DealCarousel({ posts }) {
               className="deal-c-card"
               style={{ width: cardW, flexBasis: cardW }}
             >
-              <img src={post.img} alt={post.caption} />
-              <div className="social-caption">{post.caption}</div>
+              <img src={post.img} alt={post.title} />
+              <div className="social-caption">{post.title}</div>
             </div>
           ))}
         </div>
@@ -413,27 +161,26 @@ function DealCarousel({ posts }) {
 }
 
 function ArticleModal({ post, onClose }) {
-  const { article } = post
-  useEffect(() => {
+    useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
   return (
-    <div className="modal article-modal" role="dialog" aria-modal="true" aria-label={article.title}>
+    <div className="modal article-modal" role="dialog" aria-modal="true" aria-label={post.title}>
       <button className="modal-backdrop" type="button" aria-label="Close" onClick={onClose} />
       <div className="modal-card modal-card--article">
         <button type="button" className="modal-close" onClick={onClose}>✕ Close</button>
         <div className="article-modal-img-wrap">
-          <img src={post.img} alt={post.caption} className="article-modal-img" />
+          <img src={post.img} alt={post.title} className="article-modal-img" />
         </div>
         <div className="article-modal-body">
           <p className="eyebrow">Insights &amp; Resources</p>
-          <h2 className="article-modal-title">{article.title}</h2>
-          <p className="article-modal-intro">{article.intro}</p>
+          <h2 className="article-modal-title">{post.title}</h2>
+          <p className="article-modal-intro">{post.intro}</p>
           <div className="article-sections">
-            {article.sections.map((sec) => (
+            {(post.sections || []).map((sec) => (
               <div key={sec.heading} className="article-section">
                 <h4 className="article-section-heading">{sec.heading}</h4>
                 <p className="article-section-body">{sec.body}</p>
@@ -441,7 +188,7 @@ function ArticleModal({ post, onClose }) {
             ))}
           </div>
           <Link className="btn primary article-modal-cta" to="/contact" onClick={onClose}>
-            {article.cta} →
+            {post.cta} →
           </Link>
         </div>
       </div>
@@ -570,7 +317,6 @@ function Home() {
         </ol>
       </section>
 
-
       {/* ── ABOUT US ── */}
       <section className="section home-about">
         <div className="home-about-grid">
@@ -668,11 +414,11 @@ function Home() {
               onClick={() => setActiveArticle(post)}
             >
               <div className="edu-img-wrap">
-                <img src={post.img} alt={post.caption} />
+                <img src={post.img} alt={post.title} />
               </div>
               <div className="edu-card-body">
-                <h4 className="edu-card-title">{post.article.title}</h4>
-                <p className="edu-card-intro">{post.article.intro}</p>
+                <h4 className="edu-card-title">{post.title}</h4>
+                <p className="edu-card-intro">{post.intro}</p>
                 <span className="social-read-more">Read Article →</span>
               </div>
             </button>
@@ -688,7 +434,7 @@ function Home() {
                 className="insight-link"
                 onClick={() => setActiveArticle(post)}
               >
-                {post.article.title}
+                {post.title}
                 <span aria-hidden="true">→</span>
               </button>
             ))}

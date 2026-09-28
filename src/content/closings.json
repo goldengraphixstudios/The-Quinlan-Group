@@ -1,0 +1,58 @@
+[
+  {
+    "id": "d1",
+    "caption": "Just Closed · 21 Hampton Ave, Warwick RI",
+    "image": "uploads/post-hampton-closed.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 0
+  },
+  {
+    "id": "d2",
+    "caption": "Just Sold · 67 Brewster Dr, Warwick RI",
+    "image": "uploads/post-brewster-sold.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 1
+  },
+  {
+    "id": "d3",
+    "caption": "Closed Deal · 193 Harrison St, Pawtucket RI",
+    "image": "uploads/post-harrison-closed.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 2
+  },
+  {
+    "id": "d4",
+    "caption": "Closed Deal · 290 Providence Pike, Putnam CT",
+    "image": "uploads/post-putnam-closed.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 3
+  },
+  {
+    "id": "d5",
+    "caption": "Just Closed · 58 Swan St, East Providence RI",
+    "image": "uploads/post-swan-closed.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 4
+  },
+  {
+    "id": "d6",
+    "caption": "Just Closed · 0 Woodbine St, Johnston RI",
+    "image": "uploads/post-woodbine-closed.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 5
+  },
+  {
+    "id": "d7",
+    "caption": "Just Closed · 64 Westford Rd, Eastford CT",
+    "image": "uploads/post-westford-closed.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 6
+  }
+]

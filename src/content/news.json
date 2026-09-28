@@ -1,0 +1,41 @@
+[
+  {
+    "id": "n1",
+    "text": "Now Licensed in Florida — Serving buyers, sellers & investors statewide",
+    "eyebrow": "Expanding Coverage",
+    "headline": "Now Licensed in Florida",
+    "sub": "Serving buyers, sellers & investors in FL alongside RI, MA & CT.",
+    "cta": "Connect With Us →",
+    "href": "#/contact",
+    "image": "uploads/florida-license.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 0
+  },
+  {
+    "id": "n2",
+    "text": "Just Closed · 64 Westford Rd, Eastford CT — Rural CT property, precision closing",
+    "eyebrow": "Just Closed",
+    "headline": "64 Westford Rd, Eastford CT",
+    "sub": "Rural CT property closed with cross-state precision.",
+    "cta": "View All Closings →",
+    "href": "#/listings",
+    "image": "uploads/post-westford-closed.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 1
+  },
+  {
+    "id": "n3",
+    "text": "Just Closed · 58 Swan St, East Providence RI — Renovated Cape Cod, sold with strategy",
+    "eyebrow": "Just Closed",
+    "headline": "58 Swan St, East Providence RI",
+    "sub": "Renovated Cape Cod sold with targeted digital strategy.",
+    "cta": "View All Closings →",
+    "href": "#/listings",
+    "image": "uploads/post-swan-closed.jpg",
+    "published": true,
+    "date": "2026-09-28",
+    "order": 2
+  }
+]

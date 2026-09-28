@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { HashRouter, NavLink, Route, Routes, Link } from 'react-router-dom'
 import logo from './assets/logo.png'
 import realLogo from './assets/real-broker-logo.jpg'
+import { news as NEWS } from './content'
+import AdminApp from './admin/AdminApp'
 import Home from './pages/Home'
 import Listings from './pages/Listings'
 import Services from './pages/Services'
@@ -51,12 +53,6 @@ function MobileMenu({ open, setOpen }) {
   )
 }
 
-const NEWS = [
-  { text: 'Now Licensed in Florida — Serving buyers, sellers & investors statewide', href: '#/contact' },
-  { text: 'Just Closed · 64 Westford Rd, Eastford CT — Rural CT property, precision closing', href: '#/listings' },
-  { text: 'Just Closed · 58 Swan St, East Providence RI — Renovated Cape Cod, sold with strategy', href: '#/listings' },
-]
-
 function NewsBar() {
   const [idx, setIdx] = useState(0)
   const [out, setOut] = useState(false)
@@ -77,6 +73,8 @@ function NewsBar() {
     const id = setInterval(advance, 6000)
     return () => { alive = false; clearInterval(id) }
   }, [])
+
+  if (!NEWS.length) return null
 
   return (
     <div className="news-bar">
@@ -130,6 +128,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<AdminApp />} />
           </Routes>
         </main>
 
