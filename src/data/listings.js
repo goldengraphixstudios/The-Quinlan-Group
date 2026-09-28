@@ -8,8 +8,8 @@ import providenceExterior from '../assets/providence-exterior.jpg'
 import providenceLiving from '../assets/providence-living.jpg'
 import providenceKitchen from '../assets/providence-kitchen.jpg'
 
-import swanExterior from '../assets/swan-exterior.png'
-import westfordExterior from '../assets/westford-exterior.png'
+import swanExterior from '../assets/swan-exterior.jpg'
+import westfordExterior from '../assets/westford-exterior.jpg'
 import woodbineLot from '../assets/woodbine-lot.jpg'
 import harrisonExterior from '../assets/harrison-exterior.jpg'
 

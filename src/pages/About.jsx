@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import bryanPhoto from '../assets/bryan-quinlan.png'
 import rebeccaPhoto from '../assets/rebecca-manchester.png'
-import aboutUsImg from '../assets/about-us.png'
+import aboutUsImg from '../assets/about-us.jpg'
 import brandAchievements from '../assets/brand-achievements.jpg'
 
 function About() {

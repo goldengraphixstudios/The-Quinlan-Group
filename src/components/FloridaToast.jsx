@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import floridaImg from '../assets/florida-license.png'
-import westfordImg from '../assets/social/post-westford-closed.png'
-import swanImg from '../assets/social/post-swan-closed.png'
+import floridaImg from '../assets/florida-license.jpg'
+import westfordImg from '../assets/social/post-westford-closed.jpg'
+import swanImg from '../assets/social/post-swan-closed.jpg'
 
 const ITEMS = [
   {
