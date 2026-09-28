@@ -2200,15 +2200,15 @@ button, .btn, input, select, textarea { cursor: none; }
   overflow: hidden;
   /* Feather every edge except the right, so the photo dissolves into the
      page instead of sitting on it as a card. */
-  /* The left feather must finish BEFORE the subjects start, or it makes
-     them translucent. Opaque by 22%; the crop below pushes them past it. */
+  /* Keep the transparency feather SHORT so it never reaches the subjects
+     and ghosts them. The ::after scrim below does the soft blending. */
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 9%, #000 22%),
-    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.65) 8%, #000 22%, #000 76%, rgba(0,0,0,0.55) 93%, transparent 100%);
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 6%, #000 13%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.65) 7%, #000 19%, #000 78%, rgba(0,0,0,0.55) 93%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 9%, #000 22%),
-    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.65) 8%, #000 22%, #000 76%, rgba(0,0,0,0.55) 93%, transparent 100%);
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 6%, #000 13%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.65) 7%, #000 19%, #000 78%, rgba(0,0,0,0.55) 93%, transparent 100%);
   mask-composite: intersect;
 }
 
@@ -2234,7 +2234,7 @@ button, .btn, input, select, textarea { cursor: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 10% 18%;
+  object-position: 34% 18%;
   filter: saturate(0.8) contrast(1.06) brightness(0.96);
   animation: portraitDrift 26s ease-in-out infinite alternate;
   transition: filter 1.1s ease;
@@ -2264,6 +2264,7 @@ button, .btn, input, select, textarea { cursor: none; }
   line-height: 0.92;
   letter-spacing: -0.035em;
   color: var(--white);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.85);
 }
 
 .hero-stat-label {
@@ -2273,6 +2274,7 @@ button, .btn, input, select, textarea { cursor: none; }
   color: var(--white-soft);
   line-height: 1.55;
   padding-top: 0.42rem;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.8);
 }
 
 .hero-portrait-caption {
@@ -2290,6 +2292,7 @@ button, .btn, input, select, textarea { cursor: none; }
   letter-spacing: -0.01em;
   color: var(--white);
   line-height: 1.35;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.9);
 }
 
 .hero-portrait-role {
@@ -2297,7 +2300,8 @@ button, .btn, input, select, textarea { cursor: none; }
   font-size: 0.66rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--white-faint);
+  color: var(--white-soft);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.9);
 }
 
 @keyframes portraitRise {
@@ -2310,16 +2314,14 @@ button, .btn, input, select, textarea { cursor: none; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Held translateX keeps the subjects clear of the left feather at every
-   point in the drift; only scale and Y move. */
 @keyframes portraitDrift {
-  from { transform: scale(1.22) translate3d(9%, 0.8%, 0); }
-  to   { transform: scale(1.28) translate3d(9%, -1%, 0); }
+  from { transform: scale(1.04) translate3d(0, 0.6%, 0); }
+  to   { transform: scale(1.09) translate3d(-0.8%, -1.2%, 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-portrait, .hero-stat, .hero-portrait-caption { animation: none; }
-  .hero-portrait-frame img { animation: none; transform: scale(1.22) translate3d(9%, 0, 0); }
+  .hero-portrait-frame img { animation: none; transform: scale(1.05); }
 }
 
 
