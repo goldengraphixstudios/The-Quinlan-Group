@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import heroBg from '../assets/hero-bg.png'
+import teamHero from '../assets/team-hero.jpg'
 import brandJourney from '../assets/brand-journey.jpg'
 import aboutUsImg from '../assets/about-us.png'
 import bryanPhoto from '../assets/bryan-quinlan.png'
@@ -490,6 +491,17 @@ function Home() {
             <Link className="btn ghost" to="/listings">View Closed Listings</Link>
           </div>
           <p className="hero-reassure">Free consultation · No obligation · We reply within 24 hours</p>
+        </div>
+
+        <div className="hero-portrait">
+          <div className="hero-portrait-frame">
+            <img src={teamHero} alt="Bryan Quinlan and Rebecca Ann Manchester of The Quinlan Group" />
+            <div className="hero-portrait-scrim" aria-hidden="true" />
+            <div className="hero-portrait-caption">
+              <p className="hero-portrait-names">Bryan Quinlan &amp; Rebecca Ann Manchester</p>
+              <p className="hero-portrait-role">Your advisors, start to close</p>
+            </div>
+          </div>
         </div>
       </section>
 

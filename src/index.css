@@ -2163,14 +2163,83 @@ button, .btn, input, select, textarea { cursor: none; }
    services, process, digest, final CTA
 ========================================= */
 
-/* -- 1. HERO (single column, focused) -- */
+/* -- 1. HERO (copy left, team portrait right) -- */
 .hero-home {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 4rem;
   min-height: 78vh;
-  padding: 4rem 0 5.5rem;
+  padding: 3.5rem 0 5rem;
+  align-items: center;
 }
 
-.hero-content--focused { max-width: 760px; }
+.hero-content--focused { max-width: 640px; }
+
+/* -- HERO PORTRAIT -- */
+.hero-portrait {
+  position: relative;
+  z-index: 1;
+  justify-self: end;
+  width: 100%;
+  max-width: 520px;
+}
+
+.hero-portrait-frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4 / 3.35;
+  background: var(--black-card);
+}
+
+.hero-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  filter: saturate(0.82) contrast(1.04);
+  transition: transform 0.9s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.hero-portrait:hover .hero-portrait-frame img { transform: scale(1.03); }
+
+.hero-portrait-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(3,3,3,0.92) 0%, rgba(3,3,3,0.35) 32%, transparent 58%),
+    linear-gradient(to right, rgba(3,3,3,0.3) 0%, transparent 28%);
+  pointer-events: none;
+}
+
+.hero-portrait-caption {
+  position: absolute;
+  left: 1.6rem;
+  right: 1.6rem;
+  bottom: 1.4rem;
+  z-index: 2;
+}
+
+.hero-portrait-names {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  line-height: 1.35;
+}
+
+.hero-portrait-role {
+  margin: 0.25rem 0 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+}
+
+
+
 
 .hero-h1 {
   font-family: var(--font-title);
@@ -2548,6 +2617,18 @@ button, .btn, input, select, textarea { cursor: none; }
   .proc-card:nth-child(1), .proc-card:nth-child(2) { border-bottom: 1px solid var(--line); }
 }
 
+@media (max-width: 1000px) {
+  .hero-home {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.8rem;
+    align-items: start;
+  }
+  .hero-content--focused { max-width: 100%; }
+  .hero-portrait { justify-self: stretch; max-width: 100%; }
+  .hero-portrait-frame { aspect-ratio: 16 / 9; }
+  .hero-portrait-frame img { object-position: center 20%; }
+}
+
 @media (max-width: 860px) {
   .final-cta-inner { grid-template-columns: 1fr; gap: 2.4rem; padding: 2.6rem 1.8rem; }
   .proof-bar { gap: 1.8rem; }
@@ -2556,8 +2637,10 @@ button, .btn, input, select, textarea { cursor: none; }
 }
 
 @media (max-width: 720px) {
-  .hero-home { min-height: auto; padding: 2.5rem 0 3.5rem; }
+  .hero-home { min-height: auto; padding: 2.5rem 0 3.5rem; gap: 2.2rem; }
   .hero-h1 { font-size: clamp(2.1rem, 9vw, 2.9rem); max-width: 100%; }
+  .hero-portrait-frame { aspect-ratio: 5 / 4; }
+  .hero-portrait-caption { left: 1.1rem; right: 1.1rem; bottom: 1.1rem; }
   .svc-grid { grid-template-columns: 1fr; }
   .proc-grid { grid-template-columns: 1fr; }
   .proc-card { border-right: none; border-bottom: 1px solid var(--line); }
