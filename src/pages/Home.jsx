@@ -483,8 +483,8 @@ function Home() {
             <em>like family.</em>
           </h1>
           <p className="hero-lede">
-            We've guided 200+ families through buying, selling, and investing since 2017 —
-            with honest counsel, modern marketing, and zero pressure.
+            Honest counsel, modern marketing, and zero pressure — guiding buyers,
+            sellers, and investors from first showing to final signature.
           </p>
           <div className="hero-actions">
             <Link className="btn primary" to="/contact">Schedule a Private Consult</Link>
@@ -496,11 +496,14 @@ function Home() {
         <div className="hero-portrait">
           <div className="hero-portrait-frame">
             <img src={teamHero} alt="Bryan Quinlan and Rebecca Ann Manchester of The Quinlan Group" />
-            <div className="hero-portrait-scrim" aria-hidden="true" />
-            <div className="hero-portrait-caption">
-              <p className="hero-portrait-names">Bryan Quinlan &amp; Rebecca Ann Manchester</p>
-              <p className="hero-portrait-role">Your advisors, start to close</p>
-            </div>
+          </div>
+          <div className="hero-stat">
+            <span className="hero-stat-num">200+</span>
+            <span className="hero-stat-label">Families guided<br />since 2017</span>
+          </div>
+          <div className="hero-portrait-caption">
+            <p className="hero-portrait-names">Bryan Quinlan &amp; Rebecca Ann Manchester</p>
+            <p className="hero-portrait-role">Your advisors, start to close</p>
           </div>
         </div>
       </section>
