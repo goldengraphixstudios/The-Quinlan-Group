@@ -23,49 +23,58 @@ Both are ordinary commits, so every edit is version-controlled and revertable.
 
 ## Signing in
 
-Username and password. That is it.
+| | |
+|---|---|
+| **Email** | `bryanquinlan` |
+| **Password** | `bryanq12345` |
 
-**The very first visit** shows a one-time setup screen instead: pick a username
-(defaults to `bryan`) and a password, and paste a GitHub token once. After that
-the token is never needed again — it is encrypted with your password and stored,
-and everyone signs in normally.
+That is the whole login. No setup screen, no token to paste.
 
-Get the token from
+### One-time seeding (done once, by a developer)
+
+The browser needs a GitHub token to commit — that is simply how the GitHub
+API works. It is sealed into the repo once and nobody sees it again:
+
+```bash
+GITHUB_TOKEN=github_pat_xxx node scripts/set-admin.mjs
+git add public/admin-auth.json && git commit -m "Configure admin sign-in" && git push
+```
+
+Create the token at
 **[GitHub → Fine-grained tokens → Generate new](https://github.com/settings/personal-access-tokens/new)**:
 
 - **Repository access** → *Only select repositories* → **The-Quinlan-Group**
 - **Permissions → Repository permissions → Contents** → **Read and write**
 
-Nothing else is needed.
+The script encrypts it under the password (PBKDF2-SHA256, 600k iterations,
+AES-GCM) and writes `public/admin-auth.json`. The password is never stored —
+it is the decryption key, so typing it correctly *is* the check. A wrong
+password cannot decrypt, it fails.
 
-### Why the password has to be a strong one
+### Know this about the current password
 
-The site is static — there is no server to check a password against. So the
-GitHub token is stored **encrypted with your password** (PBKDF2, 600,000
-iterations, AES-GCM) in `public/admin-auth.json`.
+`bryanq12345` is short and guessable. Because the site is static, the
+encrypted token ships publicly with the site, so anyone can download it and
+try passwords offline at full speed. This one would not last long against
+that, and whoever cracked it could edit the site.
 
-That file is public, like everything else in the repo. A wrong password cannot
-decrypt it, but someone who downloaded it could guess passwords offline. The
-password is the only thing protecting the token, so:
+That is an accepted trade-off for convenience, not a mistake — but it is worth
+knowing. Two ways to improve it whenever you want:
 
-- Use a **long passphrase** — four random words beats a short complex string.
-- Do not reuse a password from anywhere else.
-- Scope the token to this one repo, so worst case is limited to this site.
+1. **Stronger password** — rerun `set-admin.mjs` after changing `PASSWORD` in
+   the script. Four random words is enormously stronger and no harder to type.
+2. **Real server-side auth** — a small free Cloudflare Worker holds the token
+   so it never reaches the browser at all. The CMS itself would not change.
 
-The setup screen enforces a 12-character minimum and rejects obvious guesses.
+Either way, keep the token scoped to this one repo so the blast radius stays
+limited to this site.
 
-If you want proper server-side authentication instead — where the token never
-reaches the browser at all — that needs a small free API (a Cloudflare Worker).
-Ask and it can be added without changing anything else.
+### Changing the password
 
-### Your password is not recoverable
+Edit `PASSWORD` at the top of `scripts/set-admin.mjs`, rerun it with a token,
+commit the regenerated `public/admin-auth.json`.
 
-It is never stored, only used to derive a key. If it is lost, delete
-`public/admin-auth.json` from the repo and the setup screen returns; you will
-need a fresh GitHub token.
-
-Signing out clears the session immediately, and sessions end when the tab
-closes.
+Sessions live in the tab and end when it closes.
 
 ## Using it
 

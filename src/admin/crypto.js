@@ -69,14 +69,7 @@ export async function openToken(record, password) {
     )
     return dec.decode(plain)
   } catch {
-    throw new Error('Incorrect username or password.')
+    throw new Error('Incorrect email or password.')
   }
 }
 
-/** Rough strength gate — the ciphertext is public, so this is the real defence. */
-export function passwordProblem(password) {
-  if (password.length < 12) return 'Use at least 12 characters.'
-  if (!/[^a-zA-Z]/.test(password)) return 'Add a number or symbol.'
-  if (/^(password|letmein|admin|quinlan)/i.test(password)) return 'Too easy to guess.'
-  return null
-}

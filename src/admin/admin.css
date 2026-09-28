@@ -316,3 +316,15 @@
 
 .a-hint--warn { color: #ffb86b; }
 .a-hint--ok { color: #7fe0a0; }
+
+.a-code {
+  background: var(--a-panel-2);
+  border: 1px solid var(--a-line);
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.74rem;
+  color: var(--a-text);
+  overflow-x: auto;
+  margin: 0;
+  user-select: all;
+}
