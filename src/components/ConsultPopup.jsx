@@ -12,9 +12,10 @@ export default function ConsultPopup() {
     const alreadyDismissed = sessionStorage.getItem('tqg_popup_dismissed')
     if (alreadyDismissed) return
 
+    // Staggered well after the Florida toast (4s) so the two never stack.
     timerRef.current = setTimeout(() => {
       setVisible(true)
-    }, 8000)
+    }, 25000)
 
     const onExitIntent = (e) => {
       if (e.clientY <= 0 && !dismissed) {

@@ -262,6 +262,51 @@ const eduPosts = [
   },
 ]
 
+/* ── ICONS ── */
+const Ico = {
+  search: <path d="M11 3a8 8 0 105.3 14l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0011 3zm0 2a6 6 0 110 12 6 6 0 010-12z" />,
+  tag: <><path d="M3 12V5a2 2 0 012-2h7l9 9-9 9-9-9z" /><circle cx="7.5" cy="7.5" r="1.5" /></>,
+  spark: <><path d="M12 2l2.2 6.2L20.5 10l-6.3 1.8L12 18l-2.2-6.2L3.5 10l6.3-1.8L12 2z" /><path d="M18.5 15l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9.9-2.4z" /></>,
+  chart: <><path d="M3 21h18" /><rect x="5" y="12" width="3.5" height="7" /><rect x="10.2" y="7" width="3.5" height="12" /><rect x="15.4" y="3" width="3.5" height="16" /></>,
+}
+
+function Icon({ d }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{d}</svg>
+  )
+}
+
+const SERVICES = [
+  {
+    id: 'buyer', icon: Ico.search, title: 'Buyer Representation',
+    line: 'Find the right home, at the right price, with the right support.',
+    points: ['Tailored property search', 'Off-market access', 'Offer strategy & negotiation'],
+  },
+  {
+    id: 'seller', icon: Ico.tag, title: 'Seller Strategy',
+    line: 'Position your property to attract serious buyers and top-dollar offers.',
+    points: ['Precision pricing analysis', 'Staging & pre-list prep', 'Multi-channel campaigns'],
+  },
+  {
+    id: 'marketing', icon: Ico.spark, title: 'Marketing & Media',
+    line: 'Premium presentation that makes properties unforgettable.',
+    points: ['Professional photography', 'Branded listing creative', 'Targeted digital ads'],
+  },
+  {
+    id: 'investment', icon: Ico.chart, title: 'Investment Advisory',
+    line: 'Strategic acquisitions and portfolio growth across the region.',
+    points: ['Multi-family acquisition', 'Cap rate & ROI analysis', 'Cross-state sourcing'],
+  },
+]
+
+const PROCESS = [
+  { n: '01', t: 'Consultation', d: 'A private conversation — no pressure, just clarity. We learn your goals, timeline, and what success looks like for you.' },
+  { n: '02', t: 'Strategy', d: 'We build a tailored plan. For buyers, a search and offer strategy. For sellers, a positioning and marketing plan built around your property.' },
+  { n: '03', t: 'Execution', d: 'Showings, negotiations, campaigns, and transaction management — executed with precision, with you informed at every step.' },
+  { n: '04', t: 'Close', d: 'Calm, clear communication through the final steps. From contract to keys, we stay with you until the ink is dry.' },
+]
+
 const CARD_GAP = 14
 const VISIBLE = 4
 
@@ -279,7 +324,8 @@ function DealCarousel({ posts }) {
     const measure = () => {
       if (!wrapRef.current) return
       const w = wrapRef.current.offsetWidth
-      const cw = Math.floor((w - (VISIBLE - 1) * CARD_GAP) / VISIBLE)
+      const per = w < 640 ? 1 : w < 900 ? 2 : w < 1200 ? 3 : VISIBLE
+      const cw = Math.floor((w - (per - 1) * CARD_GAP) / per)
       setCardW(cw)
       setStep(cw + CARD_GAP)
     }
@@ -367,6 +413,12 @@ function DealCarousel({ posts }) {
 
 function ArticleModal({ post, onClose }) {
   const { article } = post
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
   return (
     <div className="modal article-modal" role="dialog" aria-modal="true" aria-label={article.title}>
       <button className="modal-backdrop" type="button" aria-label="Close" onClick={onClose} />
@@ -423,105 +475,84 @@ function Home() {
         <div className="hero-bg-layer" aria-hidden="true" />
         <div className="hero-veil" aria-hidden="true" />
         <div className="hero-lines" aria-hidden="true" />
-        <div className="hero-content">
+        <div className="hero-content hero-content--focused">
           <p className="eyebrow">Rhode Island · Massachusetts · Connecticut · Florida</p>
-          <h1>
-            Top RI Real Estate team helping 200+ families since 2017.
-            <span className="hero-divider">Integrity, expertise &amp; client-first service.</span>
-            <span className="hero-divider">With us, you're family.</span>
+          <h1 className="hero-h1">
+            Real estate that treats you<br />
+            <em>like family.</em>
           </h1>
-          <div className="hero-pillars">
-            <span>Servicing; RI, MA, CT &amp; FL</span>
-            <span>Seen on; Projo · WPRI · WNRI</span>
-          </div>
+          <p className="hero-lede">
+            We've guided 200+ families through buying, selling, and investing since 2017 —
+            with honest counsel, modern marketing, and zero pressure.
+          </p>
           <div className="hero-actions">
             <Link className="btn primary" to="/contact">Schedule a Private Consult</Link>
             <Link className="btn ghost" to="/listings">View Closed Listings</Link>
           </div>
-        </div>
-        <div className="hero-frame">
-          <div className="hero-outline">
-            <p className="frame-title">Brand Essence</p>
-            <h3>Authentic. Approachable. Family-driven.</h3>
-            <p>
-              We navigate complexity with clarity, so every client feels confident
-              and protected from first showing to final signature.
-            </p>
-          </div>
-          <div className="hero-credibility">
-            <div>
-              <span>8+</span>
-              <p>Years serving the region</p>
-            </div>
-            <div>
-              <span>200+</span>
-              <p>Families guided since 2017</p>
-            </div>
-            <div>
-              <span>RI · MA · CT · FL</span>
-              <p>Full regional coverage</p>
-            </div>
-          </div>
+          <p className="hero-reassure">Free consultation · No obligation · We reply within 24 hours</p>
         </div>
       </section>
 
-      {/* ── MARQUEE ── */}
-      <section className="marquee">
-        <div className="marquee-track">
-          <div className="marquee-row">
-            <span>Servicing · Rhode Island · Massachusetts · Connecticut · Florida</span>
-            <span>Seen on</span>
-            <img src={projoLogo} alt="Providence Journal logo" className="logo-mark logo-projo" />
-            <img src={wpriLogo} alt="WPRI logo" className="logo-mark logo-wpri" />
-            <img src={wnriLogo} alt="WNRI logo" className="logo-mark logo-wnri" />
-            <span>Integrity · Expertise · Client-first service</span>
+      {/* ═══ 2. PROOF BAR — stats stated once ═══ */}
+      <section className="proof-bar">
+        <div className="proof-stats">
+          <div className="proof-stat">
+            <span className="proof-num">200+</span>
+            <p>Families guided</p>
           </div>
-          <div className="marquee-row" aria-hidden="true">
-            <span>Servicing · Rhode Island · Massachusetts · Connecticut · Florida</span>
-            <span>Seen on</span>
-            <img src={projoLogo} alt="" className="logo-mark logo-projo" />
-            <img src={wpriLogo} alt="" className="logo-mark logo-wpri" />
-            <img src={wnriLogo} alt="" className="logo-mark logo-wnri" />
-            <span>Integrity · Expertise · Client-first service</span>
+          <div className="proof-stat">
+            <span className="proof-num">8+</span>
+            <p>Years serving the region</p>
           </div>
+          <div className="proof-stat">
+            <span className="proof-num">4</span>
+            <p>States licensed</p>
+          </div>
+        </div>
+        <div className="proof-press">
+          <span className="proof-press-label">As seen on</span>
+          <img src={projoLogo} alt="The Providence Journal" className="logo-mark logo-projo" />
+          <img src={wpriLogo} alt="WPRI" className="logo-mark logo-wpri" />
+          <img src={wnriLogo} alt="WNRI" className="logo-mark logo-wnri" />
         </div>
       </section>
 
-      {/* ── APPROACH ── */}
-      <section className="section approach">
+      {/* ═══ 3. WHAT WE DO ═══ */}
+      <section className="section services-home">
         <div className="section-title">
-          <h2>Our Approach</h2>
-          <p>
-            A refined, calm, and trustworthy experience that replaces noise with
-            clarity and makes each decision feel confident.
-          </p>
+          <h2>What We Do</h2>
+          <p>Full-service representation for buyers, sellers, and investors — each with a clear plan behind it.</p>
         </div>
-        <div className="approach-grid">
-          <div className="approach-card">
-            <div className="approach-icon">◈</div>
-            <h3>Relationships First</h3>
-            <p>
-              We treat every client like family, pairing thoughtful guidance with
-              clear, honest communication throughout every step.
-            </p>
-          </div>
-          <div className="approach-card">
-            <div className="approach-icon">◆</div>
-            <h3>Luxury Minimalism</h3>
-            <p>
-              A black-and-white visual language keeps focus on the property, the
-              story, and the client experience — never the noise.
-            </p>
-          </div>
-          <div className="approach-card">
-            <div className="approach-icon">◉</div>
-            <h3>Precision Strategy</h3>
-            <p>
-              Market intelligence, modern marketing, and calm negotiation —
-              executed with intention and delivered with results.
-            </p>
-          </div>
+        <div className="svc-grid">
+          {SERVICES.map((s) => (
+            <Link key={s.id} to="/services" className="svc-card">
+              <span className="svc-icon"><Icon d={s.icon} /></span>
+              <h3>{s.title}</h3>
+              <p className="svc-line">{s.line}</p>
+              <ul className="svc-points">
+                {s.points.map((p) => <li key={p}>{p}</li>)}
+              </ul>
+              <span className="svc-more">Learn more →</span>
+            </Link>
+          ))}
         </div>
+      </section>
+
+      {/* ═══ 4. HOW IT WORKS ═══ */}
+      <section className="section process-home">
+        <div className="section-title">
+          <h2>How It Works</h2>
+          <p>Four steps. No surprises. You'll always know exactly where you stand.</p>
+        </div>
+        <ol className="proc-grid">
+          {PROCESS.map((p) => (
+            <li key={p.n} className="proc-card">
+              <span className="proc-n">{p.n}</span>
+              <h3>{p.t}</h3>
+              <p>{p.d}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
 
@@ -535,34 +566,32 @@ function Home() {
             <p className="eyebrow">Since 2017</p>
             <h2>Built on Integrity. Driven by People.</h2>
             <p>
-              The Quinlan Group is a family-driven real estate team serving clients across Rhode Island,
-              Massachusetts, Connecticut, and now Florida. Known for honest guidance, modern marketing,
-              and strong local market knowledge — we help buyers, sellers, and investors move with confidence.
+              The Quinlan Group is a family-driven team serving Rhode Island, Massachusetts,
+              Connecticut, and now Florida. We're known for honest guidance, modern marketing,
+              and market knowledge that's actually local.
             </p>
             <p>
-              Over 200 families have trusted us to navigate major real estate decisions. We deliver
-              tailored strategy, thoughtful communication, and a team that treats your goals like our own.
+              Most agents hand you a listing. We hand you a strategy — and stay in the room
+              until it works. That's the difference 200+ families have trusted us with.
             </p>
-            <div className="home-about-stats">
-              <div>
-                <span>200+</span>
-                <p>Families guided</p>
-              </div>
-              <div>
-                <span>8+</span>
-                <p>Years active</p>
-              </div>
-              <div>
-                <span>4</span>
-                <p>States licensed</p>
-              </div>
-            </div>
             <Link className="btn ghost" to="/about">Our Full Story →</Link>
           </div>
         </div>
       </section>
 
-      {/* ── TEAM PREVIEW ── */}
+      {/* ═══ 6. RECENT CLOSINGS ═══ */}
+      <section className="section social-feed">
+        <div className="section-title">
+          <h2>Recent Closings</h2>
+          <p>Every deal represents a family served and a goal achieved.</p>
+        </div>
+        <DealCarousel posts={dealPosts} />
+        <div className="teaser-actions">
+          <Link className="btn ghost" to="/listings">View Full Portfolio</Link>
+        </div>
+      </section>
+
+      {/* ═══ 7. MEET THE TEAM ═══ */}
       <section className="section team-preview">
         <div className="section-title">
           <h2>Meet the Team</h2>
@@ -609,36 +638,11 @@ function Home() {
         </div>
       </section>
 
-      {/* ── JOURNEY BANNER ── */}
-      <section className="journey-banner">
-        <img src={brandJourney} alt="Your journey home starts here" className="journey-img" />
-        <div className="journey-overlay">
-          <p className="eyebrow">Since 2017</p>
-          <h2>Your Journey Home Starts Here.</h2>
-          <p>Calm guidance. Modern strategy. A team that treats your goals like their own.</p>
-          <Link className="btn primary" to="/contact">Start the Conversation</Link>
-        </div>
-      </section>
-
-      {/* ── RECENT CLOSINGS FEED ── */}
-      <section className="section social-feed">
-        <div className="section-title">
-          <h2>Recent Closings</h2>
-          <p>Every deal represents a family served and a goal achieved.</p>
-        </div>
-        <DealCarousel posts={dealPosts} />
-        <div className="teaser-actions">
-          <Link className="btn ghost" to="/listings">View Full Portfolio</Link>
-        </div>
-      </section>
-
-      {/* ── INSIGHTS & RESOURCES FEED ── */}
+      {/* ═══ 8. INSIGHTS ═══ */}
       <section className="section social-feed insights-feed">
         <div className="section-title">
           <h2>Insights &amp; Resources</h2>
-          <p>
-            Market education, honest guidance, and real estate intelligence — straight from our team.
-          </p>
+          <p>Market education and honest guidance — straight from our team.</p>
         </div>
         <div className="insights-row insights-row--3">
           {eduPosts.slice(0, 3).map((post) => (
@@ -659,64 +663,48 @@ function Home() {
             </button>
           ))}
         </div>
-        <div className="insights-row insights-row--4">
-          {eduPosts.slice(3).map((post) => (
-            <button
-              key={post.id}
-              type="button"
-              className="social-card social-card--edu"
-              onClick={() => setActiveArticle(post)}
-            >
-              <div className="edu-img-wrap">
-                <img src={post.img} alt={post.caption} />
-              </div>
-              <div className="edu-card-body">
-                <h4 className="edu-card-title">{post.article.title}</h4>
-                <p className="edu-card-intro">{post.article.intro}</p>
-                <span className="social-read-more">Read Article →</span>
-              </div>
-            </button>
-          ))}
-        </div>
-        <div className="teaser-actions">
-          <a
-            className="btn ghost"
-            href="https://www.instagram.com/thequinlangroup"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Follow on Instagram
-          </a>
+        <div className="insights-more">
+          <p className="insights-more-label">More reading</p>
+          <div className="insights-more-list">
+            {eduPosts.slice(3).map((post) => (
+              <button
+                key={post.id}
+                type="button"
+                className="insight-link"
+                onClick={() => setActiveArticle(post)}
+              >
+                {post.article.title}
+                <span aria-hidden="true">→</span>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── LEAD MAGNET ── */}
-      <section className="section lead-magnet">
-        <div className="lead-magnet-inner">
-          <div className="lead-magnet-text">
+      {/* ═══ 9. FINAL CTA ═══ */}
+      <section className="final-cta" style={{ '--cta-bg': `url(${brandJourney})` }}>
+        <div className="final-cta-veil" aria-hidden="true" />
+        <div className="final-cta-inner">
+          <div className="final-cta-text">
             <p className="eyebrow">Free Resource</p>
             <h2>First-Time Homebuyer Guide — Rhode Island</h2>
-            <p>
-              A practical, 12-page guide covering everything first-time buyers need to know
+            <p className="final-cta-sub">
+              A practical 12-page guide covering everything first-time buyers need to know
               in today's RI market. No fluff — just honest, step-by-step guidance.
             </p>
-            <ul className="lead-magnet-list">
-              <li>Understanding the buying process from offer to close</li>
+            <ul className="final-cta-list">
+              <li>The buying process from offer to close</li>
               <li>What to look for in a property and neighborhood</li>
               <li>Common mistakes and how to avoid them</li>
               <li>Financing tips for first-time buyers in RI</li>
             </ul>
           </div>
-          <div className="lead-magnet-cta">
-            <p className="lead-magnet-label">Request Your Free Copy</p>
-            <div className="lead-magnet-form">
-              <input type="text" placeholder="Your name" className="lead-magnet-input" />
-              <input type="email" placeholder="your@email.com" className="lead-magnet-input" />
-              <Link className="btn primary lead-magnet-btn" to="/contact">
-                Get the Free Guide
-              </Link>
-            </div>
-            <p className="lead-magnet-note">No spam. We reply within 24 hours.</p>
+          <div className="final-cta-card">
+            <p className="final-cta-label">Request your free copy</p>
+            <input type="text" placeholder="Your name" className="final-cta-input" aria-label="Your name" />
+            <input type="email" placeholder="your@email.com" className="final-cta-input" aria-label="Your email" />
+            <Link className="btn primary final-cta-btn" to="/contact">Get the Free Guide</Link>
+            <p className="final-cta-note">No spam. We reply within 24 hours.</p>
           </div>
         </div>
       </section>
