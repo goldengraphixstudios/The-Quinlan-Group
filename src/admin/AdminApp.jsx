@@ -1,14 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  actionsUrl,
-  getToken,
-  latestRun,
-  readJson,
-  setToken as persistToken,
-  verifyToken,
-  writeJson,
-} from './github'
+import { actionsUrl, latestRun, readJson, writeJson } from './github'
+import AuthGate from './Auth'
+import { readSession, writeSession } from './session'
 import ImageField from './ImageField'
 import './admin.css'
 
@@ -57,90 +51,6 @@ const COLLECTIONS = {
       date: new Date().toISOString().slice(0, 10),
     }),
   },
-}
-
-/* ---------------------------------------------------------------- login -- */
-
-function Login({ onAuth }) {
-  const [token, setTokenInput] = useState('')
-  const [busy, setBusy] = useState(false)
-  const [error, setError] = useState('')
-
-  async function submit(e) {
-    e.preventDefault()
-    setBusy(true)
-    setError('')
-    try {
-      const who = await verifyToken(token.trim())
-      persistToken(token.trim())
-      onAuth(token.trim(), who)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setBusy(false)
-    }
-  }
-
-  return (
-    <div className="a-login">
-      <form className="a-login-card" onSubmit={submit}>
-        <p className="a-eyebrow">The Quinlan Group</p>
-        <h1>Content Manager</h1>
-        <p className="a-login-sub">
-          Sign in with a GitHub personal access token to edit articles, closings, and news.
-        </p>
-
-        <label className="a-label" htmlFor="tok">
-          Personal access token
-        </label>
-        <input
-          id="tok"
-          className="a-input"
-          type="password"
-          autoComplete="off"
-          placeholder="github_pat_…"
-          value={token}
-          onChange={(e) => setTokenInput(e.target.value)}
-        />
-
-        {error && <p className="a-error">{error}</p>}
-
-        <button className="a-btn a-btn--primary" disabled={busy || !token.trim()}>
-          {busy ? 'Checking…' : 'Sign in'}
-        </button>
-
-        <details className="a-help">
-          <summary>How do I get a token?</summary>
-          <ol>
-            <li>
-              Open{' '}
-              <a
-                href="https://github.com/settings/personal-access-tokens/new"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub → Fine-grained tokens → Generate new
-              </a>
-              .
-            </li>
-            <li>
-              Under <b>Repository access</b> pick <b>Only select repositories</b> →{' '}
-              <b>The-Quinlan-Group</b>.
-            </li>
-            <li>
-              Under <b>Permissions → Repository permissions</b> set <b>Contents</b> to{' '}
-              <b>Read and write</b>. Nothing else is needed.
-            </li>
-            <li>Generate, copy, and paste it above.</li>
-          </ol>
-          <p>
-            The token is stored only in this browser. Anyone holding it can change the site, so
-            keep it private and scope it to this repo alone.
-          </p>
-        </details>
-      </form>
-    </div>
-  )
 }
 
 /* ------------------------------------------------------------- editors -- */
@@ -340,8 +250,7 @@ const FORMS = { articles: ArticleForm, closings: ClosingForm, news: NewsForm }
 /* ---------------------------------------------------------------- shell -- */
 
 export default function AdminApp() {
-  const [token, setTok] = useState(getToken)
-  const [who, setWho] = useState(null)
+  const [token, setTok] = useState(readSession)
   const [tab, setTab] = useState('articles')
   // Keyed by tab, so switching collections shows "Loading…" without an
   // effect having to synchronously reset it.
@@ -390,15 +299,6 @@ export default function AdminApp() {
       cancelled = true
     }
   }, [token, tab])
-
-  // Verify a token restored from a previous session before trusting the UI.
-  useEffect(() => {
-    if (!token || who) return
-    verifyToken(token).then(setWho).catch(() => {
-      persistToken('')
-      setTok('')
-    })
-  }, [token, who])
 
   useEffect(() => {
     const warn = (e) => {
@@ -454,16 +354,7 @@ export default function AdminApp() {
     }
   }
 
-  if (!token) {
-    return (
-      <Login
-        onAuth={(t, w) => {
-          setTok(t)
-          setWho(w)
-        }}
-      />
-    )
-  }
+  if (!token) return <AuthGate onAuth={setTok} />
 
   const Form = FORMS[tab]
 
@@ -499,9 +390,8 @@ export default function AdminApp() {
             className="a-btn a-btn--quiet"
             onClick={() => {
               if (dirty && !confirm('Discard unsaved changes?')) return
-              persistToken('')
+              writeSession('')
               setTok('')
-              setWho(null)
             }}
           >
             Sign out

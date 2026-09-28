@@ -21,22 +21,51 @@ Both are ordinary commits, so every edit is version-controlled and revertable.
 
 ---
 
-## First-time setup (once per person)
+## Signing in
 
-1. Go to **[GitHub → Fine-grained tokens → Generate new](https://github.com/settings/personal-access-tokens/new)**.
-2. **Repository access** → *Only select repositories* → **The-Quinlan-Group**.
-3. **Permissions → Repository permissions** → set **Contents** to **Read and write**.
-   Nothing else is needed.
-4. Generate, copy the token, paste it into the admin sign-in screen.
+Username and password. That is it.
 
-The token is stored in that browser only. It is never committed and never sent
-anywhere except `api.github.com`.
+**The very first visit** shows a one-time setup screen instead: pick a username
+(defaults to `bryan`) and a password, and paste a GitHub token once. After that
+the token is never needed again — it is encrypted with your password and stored,
+and everyone signs in normally.
 
-**Treat the token like a password.** Anyone holding it can change the site.
-Scope it to this one repo, give it an expiry, and generate a separate one per
-person so access can be revoked individually.
+Get the token from
+**[GitHub → Fine-grained tokens → Generate new](https://github.com/settings/personal-access-tokens/new)**:
 
----
+- **Repository access** → *Only select repositories* → **The-Quinlan-Group**
+- **Permissions → Repository permissions → Contents** → **Read and write**
+
+Nothing else is needed.
+
+### Why the password has to be a strong one
+
+The site is static — there is no server to check a password against. So the
+GitHub token is stored **encrypted with your password** (PBKDF2, 600,000
+iterations, AES-GCM) in `public/admin-auth.json`.
+
+That file is public, like everything else in the repo. A wrong password cannot
+decrypt it, but someone who downloaded it could guess passwords offline. The
+password is the only thing protecting the token, so:
+
+- Use a **long passphrase** — four random words beats a short complex string.
+- Do not reuse a password from anywhere else.
+- Scope the token to this one repo, so worst case is limited to this site.
+
+The setup screen enforces a 12-character minimum and rejects obvious guesses.
+
+If you want proper server-side authentication instead — where the token never
+reaches the browser at all — that needs a small free API (a Cloudflare Worker).
+Ask and it can be added without changing anything else.
+
+### Your password is not recoverable
+
+It is never stored, only used to derive a key. If it is lost, delete
+`public/admin-auth.json` from the repo and the setup screen returns; you will
+need a fresh GitHub token.
+
+Signing out clears the session immediately, and sessions end when the tab
+closes.
 
 ## Using it
 
